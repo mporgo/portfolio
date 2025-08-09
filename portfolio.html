@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moussa PORGO - Portfolio | Développeur Fullstack & Créateur de Contenus</title>
+    <meta name="description" content="Portfolio de Moussa PORGO, étudiant en Ingénierie des Systèmes d'Information, développeur fullstack Laravel/Django/Vue.js, créateur de contenus et passionné d'IA.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e293b',
+                        secondary: '#0f172a',
+                        accent: '#3b82f6',
+                        success: '#10b981',
+                        warning: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #3b82f6;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #3b82f6; }
+        }
+
+        .project-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-primary">
+                    Moussa <span class="text-accent">PORGO</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#accueil" class="nav-link text-gray-700 hover:text-accent transition-colors" data-fr="Accueil" data-en="Home">Accueil</a>
+                    <a href="#apropos" class="nav-link text-gray-700 hover:text-accent transition-colors" data-fr="À propos" data-en="About">À propos</a>
+                    <a href="#projets" class="nav-link text-gray-700 hover:text-accent transition-colors" data-fr="Projets" data-en="Projects">Projets</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-accent transition-colors" data-fr="Services" data-en="Services">Services</a>
+                    <a href="#blog" class="nav-link text-gray-700 hover:text-accent transition-colors" data-fr="Blog" data-en="Blog">Blog</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-accent transition-colors" data-fr="Contact" data-en="Contact">Contact</a>
+                    
+                    <!-- Language Switcher -->
+                    <div class="relative">
+                        <button id="lang-switcher" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors">
+                            <i data-lucide="globe" class="w-4 h-4"></i>
+                            <span id="current-lang">FR</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                        <div id="lang-menu" class="absolute right-0 mt-2 w-24 bg-white rounded-lg shadow-lg border hidden z-50">
+                            <button onclick="switchLanguage('fr')" class="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-t-lg">FR</button>
+                            <button onclick="switchLanguage('en')" class="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-b-lg">EN</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="py-4 space-y-4">
+                    <a href="#accueil" class="block text-gray-700 hover:text-accent transition-colors" data-fr="Accueil" data-en="Home">Accueil</a>
+                    <a href="#apropos" class="block text-gray-700 hover:text-accent transition-colors" data-fr="À propos" data-en="About">À propos</a>
+                    <a href="#projets" class="block text-gray-700 hover:text-accent transition-colors" data-fr="Projets" data-en="Projects">Projets</a>
+                    <a href="#services" class="block text-gray-700 hover:text-accent transition-colors" data-fr="Services" data-en="Services">Services</a>
+                    <a href="#blog" class="block text-gray-700 hover:text-accent transition-colors" data-fr="Blog" data-en="Blog">Blog</a>
+                    <a href="#contact" class="block text-gray-700 hover:text-accent transition-colors" data-fr="Contact" data-en="Contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+            <div class="animate-fadeInUp">
+                <!-- Profile Image -->
+                <div class="w-32 h-32 mx-auto mb-2 rounded-full overflow-hidden border-4 border-white/20 animate-float">
+                    <svg class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="profileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="100" cy="100" r="100" fill="url(#profileGrad)"/>
+                        <circle cx="100" cy="80" r="30" fill="white" opacity="0.9"/>
+                        <path d="M60 140 Q100 120 140 140 L140 200 L60 200 Z" fill="white" opacity="0.9"/>
+                    </svg>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Moussa <span class="text-accent">PORGO</span>
+                </h1>
+                
+                <div class="text-xl md:text-2xl mb-8 typing-animation inline-block" data-fr="Ingénieur en devenir, passionné par la tech, l'éducation et l'innovation." data-en="Future Engineer, passionate about tech, education and innovation.">
+                    Ingénieur en devenir, passionné par la tech, l'éducation et l'innovation.
+                </div>
+                
+                <p class="text-lg md:text-xl mb-8 text-gray-300 max-w-2xl mx-auto" data-fr="Étudiant en 3ᵉ année de Licence en Ingénierie des Systèmes d'Information | Développeur Fullstack | Créateur de Contenus | Passionné d'IA & Cybersécurité" data-en="3rd year student in Information Systems Engineering | Fullstack Developer | Content Creator | AI & Cybersecurity Enthusiast">
+                    Étudiant en 3ᵉ année de Licence en Ingénierie des Systèmes d'Information | 
+                    Développeur Fullstack | Créateur de Contenus | Passionné d'IA & Cybersécurité
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div class="flex gap-4">
+                        <a href="documents/CV.pdf" download="CV_Moussa_PORGO.pdf" target="_blank" class="bg-accent hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            <span data-fr="Télécharger mon CV (PDF)" data-en="Download my CV (PDF)">Télécharger mon CV (PDF)</span>
+                        </a>
+
+                        <a href="documents/CV.jpg" download="CV_Moussa_PORGO.jpg" target="_blank" class="bg-accent hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            <span data-fr="Télécharger mon CV (Image)" data-en="Download my CV (Image)">Télécharger mon CV (Image)</span>
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 bg-success/20 text-success px-4 py-2 rounded-full">
+                        <div class="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+                        <span data-fr="Disponible pour missions" data-en="Available for projects">Disponible pour missions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-8 h-8 text-white"></i>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="apropos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Titre principal -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4" data-fr="À propos de moi" data-en="About me">
+                    À propos de moi
+                </h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <!-- Colonne gauche : Parcours et soft skills -->
+                <div class="space-y-10">
+                    <!-- Parcours académique -->
+                    <div>
+                    <h3 class="text-2xl font-semibold text-primary mb-4" data-fr="Parcours Académique" data-en="Academic Background">
+                        Parcours Académique
+                    </h3>
+                    <div class="bg-gray-50 p-6 rounded-lg flex items-center gap-4">
+                        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10">
+                        <i data-lucide="graduation-cap" class="w-7 h-7 text-accent"></i>
+                        </span>
+                        <div>
+                        <h4 class="font-semibold text-lg" data-fr="Licence en Ingénierie des Systèmes d'Information" data-en="Bachelor in Information Systems Engineering">
+                            Licence en Ingénierie des Systèmes d'Information
+                        </h4>
+                        <p class="text-gray-600" data-fr="École Supérieure d'Informatique (ESI) - Université Nazi Boni (UNB)" data-en="Higher School of Computer Science (ESI) - Nazi Boni University (UNB)">
+                            École Supérieure d'Informatique (ESI) - Université Nazi Boni (UNB)
+                        </p>
+                        <p class="text-sm text-gray-500" data-fr="3ᵉ année en cours" data-en="3rd year in progress">
+                            3ᵉ année en cours
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div>
+                    <h3 class="text-2xl font-semibold text-primary mb-4" data-fr="Soft Skills" data-en="Soft Skills">
+                        Soft Skills
+                    </h3>
+                    <ul class="grid grid-cols-2 gap-4">
+                        <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success"></i>
+                        <span data-fr="Rigueur" data-en="Rigor">Rigueur</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success"></i>
+                        <span data-fr="Travail d'équipe" data-en="Teamwork">Travail d'équipe</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success"></i>
+                        <span data-fr="Autonomie" data-en="Autonomy">Autonomie</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-success"></i>
+                        <span data-fr="Passion numérique" data-en="Digital passion">Passion numérique</span>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+
+                <!-- Colonne droite : Compétences techniques -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-primary mb-6" data-fr="Compétences Techniques" data-en="Technical Skills">
+                    Compétences Techniques
+                    </h3>
+                    <!-- Skills Tags -->
+                    <div class="mt-8 space-y-4">
+                        <div class="skill-category">
+                            <h4 class="font-semibold mb-3 text-lg" data-fr="Backend" data-en="Backend">Backend</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Laravel</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Django</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">PHP</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="font-semibold mb-3 text-lg" data-fr="Frontend" data-en="Frontend">Frontend</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Vue.js</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">React</span>
+                                <span class="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm">Flutter</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">HTML/CSS</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="font-semibold mb-3 text-lg" data-fr="Base de données" data-en="Databases">Base de données</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">MySQL</span>
+                                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4 class="font-semibold mb-3 text-lg" data-fr="CMS & Outils" data-en="CMS & Tools">CMS & Outils</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">WordPress</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Joomla</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Mobirise</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- En ce moment -->
+    <section class="py-16 bg-gradient-to-r from-accent/10 to-success/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4" data-fr="En ce moment je travaille sur" data-en="Currently working on">En ce moment je travaille sur</h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="shopping-cart" class="w-6 h-6 text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2" data-fr="Site e-commerce" data-en="E-commerce site">Site e-commerce</h3>
+                    <p class="text-gray-600 text-sm">Laravel Blade</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="store" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2" data-fr="Boutique en ligne" data-en="Online store">Boutique en ligne</h3>
+                    <p class="text-gray-600 text-sm">WordPress</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="graduation-cap" class="w-6 h-6 text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2" data-fr="Projet eCEP" data-en="eCEP Project">Projet eCEP</h3>
+                    <p class="text-gray-600 text-sm" data-fr="Plateforme éducative" data-en="Educational platform">Plateforme éducative</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md card-hover">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-lucide="book-open" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2" data-fr="Plateforme de cours" data-en="Course platform">Plateforme de cours</h3>
+                    <p class="text-gray-600 text-sm" data-fr="En ligne" data-en="Online">En ligne</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4" data-fr="Mes Projets" data-en="My Projects">Mes Projets</h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="filterProjects('all')" class="filter-btn active bg-accent text-white px-6 py-2 rounded-full font-medium transition-all duration-300" data-fr="Tous" data-en="All">Tous</button>
+                <button onclick="filterProjects('web')" class="filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-6 py-2 rounded-full font-medium transition-all duration-300" data-fr="Web" data-en="Web">Web</button>
+                <button onclick="filterProjects('mobile')" class="filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-6 py-2 rounded-full font-medium transition-all duration-300" data-fr="Mobile" data-en="Mobile">Mobile</button>
+                <button onclick="filterProjects('ecommerce')" class="filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-6 py-2 rounded-full font-medium transition-all duration-300" data-fr="E-commerce" data-en="E-commerce">E-commerce</button>
+                <button onclick="filterProjects('education')" class="filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300 px-6 py-2 rounded-full font-medium transition-all duration-300" data-fr="Éducation" data-en="Education">Éducation</button>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="max-w-md mx-auto mb-8">
+                <div class="relative">
+                    <input type="text" id="project-search" placeholder="Rechercher un projet..." class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent" data-placeholder-fr="Rechercher un projet..." data-placeholder-en="Search projects...">
+                    <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                </div>
+            </div>
+            
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projet 1 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden card-hover" data-category="education mobile" data-title="eCEP" data-description="Plateforme éducative pour le CM2 avec Django + Flutter + PostgreSQL">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center relative">
+                        <svg class="w-20 h-20 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="30" width="60" height="40" rx="5" fill="currentColor" opacity="0.8"/>
+                            <rect x="25" y="35" width="50" height="5" rx="2" fill="white"/>
+                            <rect x="25" y="45" width="35" height="3" rx="1" fill="white"/>
+                            <rect x="25" y="52" width="40" height="3" rx="1" fill="white"/>
+                            <rect x="25" y="59" width="30" height="3" rx="1" fill="white"/>
+                            <circle cx="70" cy="55" r="8" fill="white"/>
+                            <path d="M66 55 L68 57 L74 51" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-2 py-1 rounded text-xs" data-fr="Éducation" data-en="Education">Éducation</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">eCEP</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Plateforme éducative pour le CM2 avec Django + Flutter + PostgreSQL" data-en="Educational platform for CM2 with Django + Flutter + PostgreSQL">Plateforme éducative pour le CM2 avec Django + Flutter + PostgreSQL</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Django</span>
+                            <span class="bg-cyan-100 text-cyan-800 px-2 py-1 rounded text-xs">Flutter</span>
+                            <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs">PostgreSQL</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProjectModal('ecep')" class="flex-1 bg-accent text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors text-sm">
+                                <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i>
+                                <span data-fr="Voir plus" data-en="View more">Voir plus</span>
+                            </button>
+                            <button class="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors text-sm">
+                                <i data-lucide="github" class="w-4 h-4 inline mr-1"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden card-hover" data-category="education web" data-title="Plateforme de cours en ligne" data-description="Système complet de gestion de cours avec suivi des progrès">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center relative">
+                        <svg class="w-20 h-20 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="25" width="70" height="50" rx="5" fill="currentColor" opacity="0.8"/>
+                            <rect x="20" y="30" width="60" height="3" rx="1" fill="white"/>
+                            <rect x="20" y="38" width="45" height="2" rx="1" fill="white"/>
+                            <rect x="20" y="44" width="50" height="2" rx="1" fill="white"/>
+                            <rect x="20" y="50" width="40" height="2" rx="1" fill="white"/>
+                            <circle cx="70" cy="45" r="6" fill="white"/>
+                            <polygon points="67,42 67,48 72,45" fill="currentColor"/>
+                            <rect x="20" y="60" width="60" height="8" rx="2" fill="white" opacity="0.3"/>
+                        </svg>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-2 py-1 rounded text-xs" data-fr="Éducation" data-en="Education">Éducation</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-fr="Plateforme de cours en ligne" data-en="Online course platform">Plateforme de cours en ligne</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Système complet de gestion de cours avec suivi des progrès" data-en="Complete course management system with progress tracking">Système complet de gestion de cours avec suivi des progrès</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Laravel</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Vue.js</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProjectModal('courses')" class="flex-1 bg-accent text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors text-sm">
+                                <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i>
+                                <span data-fr="Voir plus" data-en="View more">Voir plus</span>
+                            </button>
+                            <button class="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors text-sm">
+                                <i data-lucide="github" class="w-4 h-4 inline mr-1"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden card-hover" data-category="web" data-title="Gestion de bibliothèque" data-description="Application complète de gestion avec système de prêts">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center relative">
+                        <svg class="w-20 h-20 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="25" y="20" width="8" height="60" rx="2" fill="currentColor" opacity="0.9"/>
+                            <rect x="37" y="25" width="8" height="55" rx="2" fill="currentColor" opacity="0.8"/>
+                            <rect x="49" y="22" width="8" height="58" rx="2" fill="currentColor" opacity="0.7"/>
+                            <rect x="61" y="27" width="8" height="53" rx="2" fill="currentColor" opacity="0.6"/>
+                            <rect x="20" y="75" width="55" height="5" rx="2" fill="white" opacity="0.8"/>
+                        </svg>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-2 py-1 rounded text-xs" data-fr="Web" data-en="Web">Web</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-fr="Gestion de bibliothèque" data-en="Library management">Gestion de bibliothèque</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Application complète de gestion avec système de prêts" data-en="Complete management application with loan system">Application complète de gestion avec système de prêts</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Laravel</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Vue.js</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProjectModal('library')" class="flex-1 bg-accent text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors text-sm">
+                                <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i>
+                                <span data-fr="Voir plus" data-en="View more">Voir plus</span>
+                            </button>
+                            <button class="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors text-sm">
+                                <i data-lucide="github" class="w-4 h-4 inline mr-1"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden card-hover" data-category="ecommerce web" data-title="Boutique en ligne" data-description="E-commerce complet avec panier et paiement">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center relative">
+                        <svg class="w-20 h-20 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 30 L25 30 L30 60 L75 60 L80 40 L35 40 L32 30 Z" fill="currentColor" opacity="0.8"/>
+                            <circle cx="35" cy="70" r="4" fill="white"/>
+                            <circle cx="65" cy="70" r="4" fill="white"/>
+                            <rect x="40" y="45" width="25" height="10" rx="2" fill="white" opacity="0.9"/>
+                            <circle cx="52" cy="50" r="2" fill="currentColor"/>
+                        </svg>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-2 py-1 rounded text-xs" data-fr="E-commerce" data-en="E-commerce">E-commerce</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-fr="Boutique en ligne" data-en="Online store">Boutique en ligne</h3>
+                        <p class="text-gray-600 mb-4" data-fr="E-commerce complet avec panier et paiement" data-en="Complete e-commerce with cart and payment">E-commerce complet avec panier et paiement</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">WordPress</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProjectModal('shop')" class="flex-1 bg-accent text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors text-sm">
+                                <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i>
+                                <span data-fr="Voir plus" data-en="View more">Voir plus</span>
+                            </button>
+                            <button class="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors text-sm">
+                                <i data-lucide="github" class="w-4 h-4 inline mr-1"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden card-hover" data-category="web" data-title="Plateforme collaborative IT" data-description="Plateforme avec forum intégré pour développeurs">
+                    <div class="h-48 bg-gradient-to-br from-teal-500 to-green-600 flex items-center justify-center relative">
+                        <svg class="w-20 h-20 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="35" cy="35" r="12" fill="currentColor" opacity="0.8"/>
+                            <circle cx="65" cy="35" r="12" fill="currentColor" opacity="0.8"/>
+                            <circle cx="50" cy="65" r="12" fill="currentColor" opacity="0.8"/>
+                            <path d="M35 47 L50 53" stroke="white" stroke-width="3"/>
+                            <path d="M65 47 L50 53" stroke="white" stroke-width="3"/>
+                            <circle cx="35" cy="35" r="4" fill="white"/>
+                            <circle cx="65" cy="35" r="4" fill="white"/>
+                            <circle cx="50" cy="65" r="4" fill="white"/>
+                        </svg>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-2 py-1 rounded text-xs" data-fr="Web" data-en="Web">Web</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-fr="Plateforme collaborative IT" data-en="IT collaborative platform">Plateforme collaborative IT</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Plateforme avec forum intégré pour développeurs" data-en="Platform with integrated forum for developers">Plateforme avec forum intégré pour développeurs</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Laravel</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">React</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProjectModal('collab')" class="flex-1 bg-accent text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors text-sm">
+                                <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i>
+                                <span data-fr="Voir plus" data-en="View more">Voir plus</span>
+                            </button>
+                            <button class="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors text-sm">
+                                <i data-lucide="github" class="w-4 h-4 inline mr-1"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 6 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden card-hover" data-category="web ecommerce" data-title="Site Fastfood" data-description="Site vitrine avec système de commande en ligne">
+                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center relative">
+                        <svg class="w-20 h-20 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="50" cy="70" rx="25" ry="8" fill="currentColor" opacity="0.6"/>
+                            <rect x="35" y="45" width="30" height="25" rx="15" fill="currentColor" opacity="0.8"/>
+                            <rect x="45" y="35" width="10" height="15" rx="5" fill="white"/>
+                            <circle cx="42" cy="55" r="2" fill="white"/>
+                            <circle cx="50" cy="52" r="2" fill="white"/>
+                            <circle cx="58" cy="55" r="2" fill="white"/>
+                            <path d="M40 62 Q50 58 60 62" stroke="white" stroke-width="2" fill="none"/>
+                        </svg>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/20 text-white px-2 py-1 rounded text-xs" data-fr="Web" data-en="Web">Web</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" data-fr="Site Fastfood" data-en="Fastfood website">Site Fastfood</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Site vitrine avec système de commande en ligne" data-en="Showcase website with online ordering system">Site vitrine avec système de commande en ligne</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Mobirise</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Laravel</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">PHP</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProjectModal('fastfood')" class="flex-1 bg-accent text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors text-sm">
+                                <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i>
+                                <span data-fr="Voir plus" data-en="View more">Voir plus</span>
+                            </button>
+                            <button class="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors text-sm">
+                                <i data-lucide="github" class="w-4 h-4 inline mr-1"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4" data-fr="Témoignages" data-en="Testimonials">Témoignages</h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold">
+                            KS
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Karim Sawadogo</h4>
+                            <p class="text-sm text-gray-600" data-fr="Directeur d'école" data-en="School director">Directeur d'école</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic" data-fr="Moussa a développé une excellente plateforme éducative pour notre école. Son professionnalisme et sa créativité nous ont impressionnés." data-en="Moussa developed an excellent educational platform for our school. His professionalism and creativity impressed us.">"Moussa a développé une excellente plateforme éducative pour notre école. Son professionnalisme et sa créativité nous ont impressionnés."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center text-white font-bold">
+                            MS
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Marie Sanogo</h4>
+                            <p class="text-sm text-gray-600" data-fr="Propriétaire boutique" data-en="Store owner">Propriétaire boutique</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic" data-fr="Grâce à Moussa, notre boutique en ligne fonctionne parfaitement. Les ventes ont augmenté de 150% depuis le lancement !" data-en="Thanks to Moussa, our online store works perfectly. Sales have increased by 150% since launch!">"Grâce à Moussa, notre boutique en ligne fonctionne parfaitement. Les ventes ont augmenté de 150% depuis le lancement !"</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-warning rounded-full flex items-center justify-center text-white font-bold">
+                            AK
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Amadou Kone</h4>
+                            <p class="text-sm text-gray-600" data-fr="Développeur senior" data-en="Senior developer">Développeur senior</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic" data-fr="Moussa est un développeur talentueux avec une excellente compréhension des technologies modernes. Je recommande vivement ses services." data-en="Moussa is a talented developer with excellent understanding of modern technologies. I highly recommend his services.">"Moussa est un développeur talentueux avec une excellente compréhension des technologies modernes. Je recommande vivement ses services."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4" data-fr="Mes Services" data-en="My Services">Mes Services</h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-8 bg-white rounded-lg card-hover">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="code" class="w-8 h-8 text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4" data-fr="Développement Web & Mobile" data-en="Web & Mobile Development">Développement Web & Mobile</h3>
+                    <p class="text-gray-600 mb-6" data-fr="Création d'applications web et mobile sur mesure avec les dernières technologies" data-en="Custom web and mobile application development with latest technologies">Création d'applications web et mobile sur mesure avec les dernières technologies</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li data-fr="• Sites web responsives" data-en="• Responsive websites">• Sites web responsives</li>
+                        <li data-fr="• Applications web complexes" data-en="• Complex web applications">• Applications web complexes</li>
+                        <li data-fr="• Applications mobiles Flutter" data-en="• Flutter mobile apps">• Applications mobiles Flutter</li>
+                        <li data-fr="• E-commerce & CMS" data-en="• E-commerce & CMS">• E-commerce & CMS</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-lg card-hover">
+                    <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="edit" class="w-8 h-8 text-success"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4" data-fr="Création de Contenus" data-en="Content Creation">Création de Contenus</h3>
+                    <p class="text-gray-600 mb-6" data-fr="Contenus éducatifs et commerciaux adaptés à vos besoins" data-en="Educational and commercial content tailored to your needs">Contenus éducatifs et commerciaux adaptés à vos besoins</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li data-fr="• Articles techniques" data-en="• Technical articles">• Articles techniques</li>
+                        <li data-fr="• Tutoriels et guides" data-en="• Tutorials and guides">• Tutoriels et guides</li>
+                        <li data-fr="• Contenus marketing" data-en="• Marketing content">• Contenus marketing</li>
+                        <li data-fr="• Documentation projet" data-en="• Project documentation">• Documentation projet</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-lg card-hover">
+                    <div class="w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="lightbulb" class="w-8 h-8 text-warning"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4" data-fr="Conseil en Digitalisation" data-en="Digital Consulting">Conseil en Digitalisation</h3>
+                    <p class="text-gray-600 mb-6" data-fr="Accompagnement digital pour écoles et boutiques" data-en="Digital support for schools and stores">Accompagnement digital pour écoles et boutiques</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li data-fr="• Audit digital" data-en="• Digital audit">• Audit digital</li>
+                        <li data-fr="• Stratégie numérique" data-en="• Digital strategy">• Stratégie numérique</li>
+                        <li data-fr="• Formation aux outils" data-en="• Tool training">• Formation aux outils</li>
+                        <li data-fr="• Optimisation processus" data-en="• Process optimization">• Optimisation processus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4" data-fr="Blog & Articles" data-en="Blog & Articles">Blog & Articles</h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="40" r="20" fill="currentColor" opacity="0.8"/>
+                            <path d="M30 60 Q50 45 70 60 Q50 75 30 60" fill="white"/>
+                            <circle cx="45" cy="35" r="3" fill="white"/>
+                            <circle cx="55" cy="35" r="3" fill="white"/>
+                            <path d="M40 45 Q50 50 60 45" stroke="white" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">15 Mars 2025</div>
+                        <h3 class="text-xl font-semibold mb-3" data-fr="L'IA dans le développement web" data-en="AI in web development">L'IA dans le développement web</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Comment l'intelligence artificielle révolutionne notre façon de développer..." data-en="How artificial intelligence is revolutionizing the way we develop...">Comment l'intelligence artificielle révolutionne notre façon de développer...</p>
+                        <a href="#" class="text-accent hover:text-blue-600 font-medium" data-fr="Lire la suite →" data-en="Read more →">Lire la suite →</a>
+                    </div>
+                </article>
+                
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="30" width="60" height="40" rx="5" fill="currentColor" opacity="0.8"/>
+                            <rect x="25" y="35" width="15" height="10" rx="2" fill="white"/>
+                            <rect x="45" y="35" width="15" height="10" rx="2" fill="white"/>
+                            <rect x="65" y="35" width="10" height="10" rx="2" fill="white"/>
+                            <rect x="25" y="50" width="25" height="5" rx="2" fill="white"/>
+                            <rect x="55" y="50" width="20" height="5" rx="2" fill="white"/>
+                            <rect x="25" y="60" width="20" height="5" rx="2" fill="white"/>
+                            <circle cx="65" cy="62" r="8" fill="white"/>
+                            <path d="M61 62 L63 64 L69 58" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">10 Juin 2025</div>
+                        <h3 class="text-xl font-semibold mb-3" data-fr="Outils No-Code : Guide complet" data-en="No-Code Tools: Complete Guide">Outils No-Code : Guide complet</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Découvrez les meilleurs outils no-code pour créer sans programmer..." data-en="Discover the best no-code tools to create without programming...">Découvrez les meilleurs outils no-code pour créer sans programmer...</p>
+                        <a href="#" class="text-accent hover:text-blue-600 font-medium" data-fr="Lire la suite →" data-en="Read more →">Lire la suite →</a>
+                    </div>
+                </article>
+                
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="25" width="70" height="50" rx="3" fill="currentColor" opacity="0.8"/>
+                            <rect x="20" y="30" width="15" height="8" rx="1" fill="white"/>
+                            <rect x="40" y="30" width="15" height="8" rx="1" fill="white"/>
+                            <rect x="60" y="30" width="15" height="8" rx="1" fill="white"/>
+                            <rect x="20" y="45" width="15" height="8" rx="1" fill="white"/>
+                            <rect x="40" y="45" width="15" height="8" rx="1" fill="white"/>
+                            <rect x="60" y="45" width="15" height="8" rx="1" fill="white"/>
+                            <rect x="20" y="60" width="15" height="8" rx="1" fill="white"/>
+                            <rect x="40" y="60" width="35" height="8" rx="1" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">20 Juillet 2025</div>
+                        <h3 class="text-xl font-semibold mb-3" data-fr="Excel avancé : Astuces pro" data-en="Advanced Excel: Pro Tips">Excel avancé : Astuces pro</h3>
+                        <p class="text-gray-600 mb-4" data-fr="Maîtrisez les fonctions avancées d'Excel pour booster votre productivité..." data-en="Master advanced Excel functions to boost your productivity...">Maîtrisez les fonctions avancées d'Excel pour booster votre productivité...</p>
+                        <a href="#" class="text-accent hover:text-blue-600 font-medium" data-fr="Lire la suite →" data-en="Read more →">Lire la suite →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary mb-4" data-fr="Contactez-moi" data-en="Contact me">Contactez-moi</h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6" data-fr="Restons en contact" data-en="Let's stay in touch">Restons en contact</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                                <i data-lucide="mail" class="w-6 h-6 text-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium">Email</div>
+                                <div class="text-gray-600">porgomoussa20@gmail.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                                <i data-lucide="phone" class="w-6 h-6 text-success"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium">WhatsApp</div>
+                                <div class="text-gray-600">+226 66 09 39 46</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-accent"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium" data-fr="Localisation" data-en="Location">Localisation</div>
+                                <div class="text-gray-600">Secteur 17, Bobo-Dioulasso, Burkina Faso</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                            <i data-lucide="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                            <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-white hover:bg-gray-900 transition-colors">
+                            <i data-lucide="github" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white hover:bg-green-600 transition-colors">
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2" data-fr="Nom" data-en="Name">Nom</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                                <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                                <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-fr="Sujet" data-en="Subject">Sujet</label>
+                            <input type="text" id="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent">
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"></textarea>
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-accent text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            <span data-fr="Envoyer le message" data-en="Send message">Envoyer le message</span>
+                        </button>
+                    </form>
+                    
+                    <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
+                        <i data-lucide="check-circle" class="w-5 h-5 inline mr-2"></i>
+                        <span data-fr="Message envoyé avec succès ! Je vous répondrai bientôt." data-en="Message sent successfully! I will reply soon.">Message envoyé avec succès ! Je vous répondrai bientôt.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-2xl font-bold mb-4">
+                    Moussa <span class="text-accent">PORGO</span>
+                </div>
+                <p class="text-gray-300 mb-6" data-fr="Développeur Fullstack | Créateur de Contenus | Passionné d'Innovation" data-en="Fullstack Developer | Content Creator | Innovation Enthusiast">Développeur Fullstack | Créateur de Contenus | Passionné d'Innovation</p>
+                <div class="flex justify-center gap-4 mb-8">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                <div class="border-t border-white/10 pt-8">
+                    <p class="text-gray-400" data-fr="© 2024 Moussa PORGO. Tous droits réservés." data-en="© 2024 Moussa PORGO. All rights reserved.">&copy; 2025 Moussa PORGO. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="modal-title" class="text-2xl font-bold text-primary"></h3>
+                    <button onclick="closeProjectModal()" class="text-gray-500 hover:text-gray-700">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <div id="modal-content" class="space-y-6">
+                    <!-- Content will be dynamically loaded -->
+                </div>
+                
+                <div class="flex gap-4 mt-8">
+                    <button class="bg-accent text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                        <span data-fr="Voir sur GitHub" data-en="View on GitHub">Voir sur GitHub</span>
+                    </button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors flex items-center gap-2">
+                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                        <span data-fr="Démo en ligne" data-en="Live demo">Démo en ligne</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Global variables
+        let currentLanguage = 'fr';
+        let skillsChart = null;
+        
+        // Language switching functionality
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            document.getElementById('lang-menu').classList.add('hidden');
+            
+            // Update all elements with language attributes
+            document.querySelectorAll('[data-fr]').forEach(element => {
+                if (lang === 'fr') {
+                    element.textContent = element.getAttribute('data-fr');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-fr]').forEach(element => {
+                if (lang === 'fr') {
+                    element.placeholder = element.getAttribute('data-placeholder-fr');
+                } else {
+                    element.placeholder = element.getAttribute('data-placeholder-en');
+                }
+            });
+        }
+        
+        // Language switcher toggle
+        document.getElementById('lang-switcher').addEventListener('click', () => {
+            document.getElementById('lang-menu').classList.toggle('hidden');
+        });
+        
+        // Close language menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#lang-switcher')) {
+                document.getElementById('lang-menu').classList.add('hidden');
+            }
+        });
+        
+        // Skills Chart
+        function initSkillsChart() {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            skillsChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Laravel', 'Django', 'Vue.js', 'Flutter', 'Python', 'React'],
+                    datasets: [{
+                        label: 'Niveau de compétence (%)',
+                        data: [85, 80, 75, 70, 78, 72],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Animate skill bars
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width;
+                    bar.style.transition = 'width 1.5s ease-in-out';
+                }, 500);
+            });
+        }
+        
+        // Project filtering
+        function filterProjects(category) {
+            const projects = document.querySelectorAll('.project-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            // Update active filter button
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active', 'bg-accent', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            
+            event.target.classList.add('active', 'bg-accent', 'text-white');
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            
+            // Filter projects
+            projects.forEach(project => {
+                const projectCategories = project.getAttribute('data-category');
+                if (category === 'all' || projectCategories.includes(category)) {
+                    project.style.display = 'block';
+                    project.style.opacity = '0';
+                    setTimeout(() => {
+                        project.style.opacity = '1';
+                        project.style.transition = 'opacity 0.3s ease-in-out';
+                    }, 100);
+                } else {
+                    project.style.opacity = '0';
+                    setTimeout(() => {
+                        project.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+        
+        // Project search
+        document.getElementById('project-search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const projects = document.querySelectorAll('.project-card');
+            
+            projects.forEach(project => {
+                const title = project.getAttribute('data-title').toLowerCase();
+                const description = project.getAttribute('data-description').toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        });
+        
+        // Project modal functionality
+        const projectData = {
+            ecep: {
+                title: 'eCEP - Plateforme Éducative',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Description</h4>
+                            <p class="text-gray-600 mb-4">Plateforme éducative complète destinée aux élèves de CM2, développée avec Django pour le backend, Flutter pour l'application mobile et PostgreSQL pour la base de données.</p>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Fonctionnalités</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Gestion des cours et exercices</li>
+                                <li>Suivi des progrès des élèves</li>
+                                <li>Interface enseignant et élève</li>
+                                <li>Application mobile Flutter</li>
+                                <li>Système de notifications</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Django</span>
+                                <span class="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm">Flutter</span>
+                                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">REST API</span>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Défis relevés</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Synchronisation mobile/web</li>
+                                <li>Interface adaptée aux enfants</li>
+                                <li>Performance optimisée</li>
+                                <li>Sécurité des données</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            courses: {
+                title: 'Plateforme de Cours en Ligne',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Description</h4>
+                            <p class="text-gray-600 mb-4">Système complet de gestion de cours en ligne avec suivi des progrès, développé avec Laravel et Vue.js pour une expérience utilisateur moderne.</p>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Fonctionnalités</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Création et gestion de cours</li>
+                                <li>Système de quiz et évaluations</li>
+                                <li>Suivi des progrès en temps réel</li>
+                                <li>Forum de discussion</li>
+                                <li>Certificats de completion</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Laravel</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Vue.js</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">MySQL</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Résultats</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Interface intuitive et responsive</li>
+                                <li>Temps de chargement optimisé</li>
+                                <li>Taux de completion élevé</li>
+                                <li>Feedback positif des utilisateurs</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            library: {
+                title: 'Système de Gestion de Bibliothèque',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Description</h4>
+                            <p class="text-gray-600 mb-4">Application complète de gestion de bibliothèque avec système de prêts, réservations et gestion des stocks, développée avec Laravel et Vue.js.</p>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Fonctionnalités</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Catalogue de livres interactif</li>
+                                <li>Système de prêts et retours</li>
+                                <li>Gestion des membres</li>
+                                <li>Réservations en ligne</li>
+                                <li>Rapports et statistiques</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Laravel</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Vue.js</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">MySQL</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Bootstrap</span>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Impact</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Automatisation des processus</li>
+                                <li>Réduction des erreurs manuelles</li>
+                                <li>Amélioration de l'expérience utilisateur</li>
+                                <li>Gain de temps significatif</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            shop: {
+                title: 'Boutique en Ligne',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Description</h4>
+                            <p class="text-gray-600 mb-4">E-commerce complet développé avec WordPress et WooCommerce, incluant gestion des produits, panier d'achat et système de paiement sécurisé.</p>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Fonctionnalités</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Catalogue produits avec filtres</li>
+                                <li>Panier d'achat dynamique</li>
+                                <li>Système de paiement sécurisé</li>
+                                <li>Gestion des commandes</li>
+                                <li>Interface d'administration</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">WordPress</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">WooCommerce</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">PHP</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Résultats</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Augmentation des ventes de 150%</li>
+                                <li>Interface utilisateur intuitive</li>
+                                <li>Temps de chargement optimisé</li>
+                                <li>Taux de conversion élevé</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            collab: {
+                title: 'Plateforme Collaborative IT',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Description</h4>
+                            <p class="text-gray-600 mb-4">Plateforme collaborative pour développeurs avec forum intégré, partage de code et gestion de projets, développée avec Laravel et React.</p>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Fonctionnalités</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Forum de discussion technique</li>
+                                <li>Partage de code et snippets</li>
+                                <li>Gestion de projets collaboratifs</li>
+                                <li>Système de notation et badges</li>
+                                <li>Messagerie instantanée</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Laravel</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">React</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Socket.io</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Redis</span>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Impact</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Communauté active de développeurs</li>
+                                <li>Amélioration de la collaboration</li>
+                                <li>Partage de connaissances efficace</li>
+                                <li>Résolution rapide des problèmes</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            fastfood: {
+                title: 'Site Fastfood',
+                content: `
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Description</h4>
+                            <p class="text-gray-600 mb-4">Site vitrine pour restaurant fastfood avec système de commande en ligne, développé avec Mobirise pour le design et Laravel pour les fonctionnalités backend.</p>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Fonctionnalités</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Menu interactif avec images</li>
+                                <li>Système de commande en ligne</li>
+                                <li>Gestion des livraisons</li>
+                                <li>Interface d'administration</li>
+                                <li>Système de paiement intégré</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-3">Technologies utilisées</h4>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Mobirise</span>
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Laravel</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">PHP</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">MySQL</span>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold mb-3">Résultats</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Design moderne et attractif</li>
+                                <li>Augmentation des commandes en ligne</li>
+                                <li>Gestion simplifiée des commandes</li>
+                                <li>Expérience utilisateur optimisée</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        };
+        
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('project-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            const project = projectData[projectId];
+            if (project) {
+                title.textContent = project.title;
+                content.innerHTML = project.content;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-accent');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-accent');
+                }
+            });
+        });
+        
+        // CV Download function - FULLY FUNCTIONAL
+        document.querySelectorAll('.download-cv').forEach(link => {
+            link.addEventListener('click', () => {
+                const format = link.getAttribute('download').split('.').pop().toUpperCase();
+                const successMsg = document.createElement('div');
+                successMsg.className = "fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2";
+                successMsg.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>CV téléchargé avec succès en format ${format} !</span>
+                `;
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 3000);
+            });
+        });
+
+        
+        // Contact form validation and submission
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.classList.add('hidden');
+            });
+            
+            // Get form data
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            let isValid = true;
+            
+            // Validation
+            if (!name) {
+                showError('name', currentLanguage === 'fr' ? 'Le nom est requis' : 'Name is required');
+                isValid = false;
+            }
+            
+            if (!email) {
+                showError('email', currentLanguage === 'fr' ? 'L\'email est requis' : 'Email is required');
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                showError('email', currentLanguage === 'fr' ? 'Format d\'email invalide' : 'Invalid email format');
+                isValid = false;
+            }
+            
+            if (!subject) {
+                showError('subject', currentLanguage === 'fr' ? 'Le sujet est requis' : 'Subject is required');
+                isValid = false;
+            }
+            
+            if (!message) {
+                showError('message', currentLanguage === 'fr' ? 'Le message est requis' : 'Message is required');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Simulate form submission
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Envoi...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    contactForm.reset();
+                    formSuccess.classList.remove('hidden');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    lucide.createIcons();
+                    
+                    setTimeout(() => {
+                        formSuccess.classList.add('hidden');
+                    }, 5000);
+                }, 1500);
+            }
+        });
+        
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorDiv = field.nextElementSibling;
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Typing animation for hero section
+        const typingText = document.querySelector('.typing-animation');
+        if (typingText) {
+            const originalText = typingText.textContent;
+            typingText.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < originalText.length) {
+                    typingText.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Start typing animation after page load
+            setTimeout(typeWriter, 1000);
+        }
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                    
+                    // Trigger skill bar animation when skills section is visible
+                    if (entry.target.querySelector('.skill-bar')) {
+                        animateSkillBars();
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.card-hover, .skill-item').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize skills chart
+            setTimeout(initSkillsChart, 500);
+            
+            // Re-initialize Lucide icons after dynamic content
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'964a0095b08aa8ed',t:'MTc1MzQyOTE1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
