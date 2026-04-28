@@ -40,12 +40,12 @@ const PROJECTS = [
       en: ['Employee & contract management', 'Attendance and leave tracking', 'Payroll calculation & management', 'Performance evaluations', 'Analytics dashboard', 'HR document management']
     },
     images: [
-      'https://picsum.photos/seed/rh-dashboard/800/450',
-      'https://picsum.photos/seed/rh-employes/800/450',
-      'https://picsum.photos/seed/rh-paie/800/450',
-      'https://picsum.photos/seed/rh-conges/800/450',
-      'https://picsum.photos/seed/rh-perf/800/450',
-      'https://picsum.photos/seed/rh-docs/800/450'
+      'images/rh/01.png',
+      'images/rh/02.png',
+      'images/rh/03.png',
+      'images/rh/04.png',
+      'images/rh/05.png',
+      'images/rh/06.png'
     ],
     gradient: 'linear-gradient(135deg, #1a3a8f, #2563eb)'
   },
@@ -73,12 +73,12 @@ const PROJECTS = [
       en: ['Elegant animated design', 'Responsive photo gallery', 'Services presentation', 'Pricing section', 'Contact form', 'Mobile & SEO optimized']
     },
     images: [
-      'https://picsum.photos/seed/spa-accueil/800/450',
-      'https://picsum.photos/seed/spa-galerie/800/450',
-      'https://picsum.photos/seed/spa-services/800/450',
-      'https://picsum.photos/seed/spa-tarifs/800/450',
-      'https://picsum.photos/seed/spa-contact/800/450',
-      'https://picsum.photos/seed/spa-mobile/800/450'
+      'images/spa/01.png',
+      'images/spa/02.png',
+      'images/spa/03.png',
+      'images/spa/04.png',
+      'images/spa/05.png',
+      'images/spa/06.png'
     ],
     gradient: 'linear-gradient(135deg, #7c3aed, #a855f7)'
   },
@@ -106,16 +106,16 @@ const PROJECTS = [
       en: ['Interactive menu & card', 'Dishes gallery', 'Daily specials highlight', 'Simplified reservation', 'About section', 'Responsive & performant']
     },
     images: [
-      'https://picsum.photos/seed/resto-home/800/450',
-      'https://picsum.photos/seed/resto-menu/800/450',
-      'https://picsum.photos/seed/resto-plats/800/450',
-      'https://picsum.photos/seed/resto-galerie/800/450',
-      'https://picsum.photos/seed/resto-reservation/800/450',
-      'https://picsum.photos/seed/resto-mobile/800/450'
+      'images/resto_menu/01.png',
+      'images/resto_menu/02.png',
+      'images/resto_menu/03.png',
+      'images/resto_menu/04.png',
+      'images/resto_menu/05.png',
+      'images/resto_menu/06.png'
     ],
     gradient: 'linear-gradient(135deg, #d97706, #f59e0b)'
   },
-  {
+/*   {
     id: 'pme',
     title: {
       fr: 'Site Web PME',
@@ -147,7 +147,7 @@ const PROJECTS = [
       'https://picsum.photos/seed/pme-footer/800/450'
     ],
     gradient: 'linear-gradient(135deg, #0d2558, #1a3a8f)'
-  },
+  }, */
   {
     id: 'tuteur',
     title: {
@@ -172,12 +172,12 @@ const PROJECTS = [
       en: ['Course & module management', 'Interactive quizzes & assessments', 'Progress tracking', 'Integrated AI tutor', 'Learner dashboard', 'Admin panel']
     },
     images: [
-      'https://picsum.photos/seed/tutor-dashboard/800/450',
-      'https://picsum.photos/seed/tutor-cours/800/450',
-      'https://picsum.photos/seed/tutor-quiz/800/450',
-      'https://picsum.photos/seed/tutor-progress/800/450',
-      'https://picsum.photos/seed/tutor-ai/800/450',
-      'https://picsum.photos/seed/tutor-admin/800/450'
+      'images/tuteur/01.png',
+      'images/tuteur/02.png',
+      'images/tuteur/03.png',
+      'images/tuteur/04.png',
+      'images/tuteur/05.png',
+      'images/tuteur/06.png'
     ],
     gradient: 'linear-gradient(135deg, #059669, #10b981)'
   },
@@ -205,16 +205,16 @@ const PROJECTS = [
       en: ['Medicine stock management', 'Sales & cash tracking', 'Expiry & low stock alerts', 'Prescription management', 'Reports & statistics', 'Quick checkout interface']
     },
     images: [
-      'https://picsum.photos/seed/pharma-dash/800/450',
-      'https://picsum.photos/seed/pharma-stock/800/450',
-      'https://picsum.photos/seed/pharma-ventes/800/450',
-      'https://picsum.photos/seed/pharma-ordo/800/450',
-      'https://picsum.photos/seed/pharma-alerts/800/450',
-      'https://picsum.photos/seed/pharma-rapports/800/450'
+      'images/pharma/01.png',
+      'images/pharma/02.png',
+      'images/pharma/03.png',
+      'images/pharma/04.png',
+      'images/pharma/05.png',
+      'images/pharma/06.png'
     ],
     gradient: 'linear-gradient(135deg, #0891b2, #06b6d4)'
   },
-  {
+  /* {
     id: 'restaurant-app',
     title: {
       fr: 'Application de Gestion de Restaurant',
@@ -279,7 +279,7 @@ const PROJECTS = [
       'https://picsum.photos/seed/ecom-admin/800/450'
     ],
     gradient: 'linear-gradient(135deg, #7c3aed, #9333ea)'
-  }
+  } */
 ];
 
 /* ── Map couleur par technologie ────────────────────────── */
