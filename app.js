@@ -99,8 +99,8 @@ const PROJECTS = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     categories: ['web'],
     online: true,
-    url: 'https://mporgo.github.io/reste_menu',
-    github: 'https://github.com/mporgo/reste_menu',
+    url: 'https://mporgo.github.io/rest_menu',
+    github: 'https://github.com/mporgo/rest_menu',
     features: {
       fr: ['Carte et menu interactif', 'Galerie des plats', 'Plats du jour mis en avant', 'Réservation simplifiée', 'Section À propos', 'Responsive & performant'],
       en: ['Interactive menu & card', 'Dishes gallery', 'Daily specials highlight', 'Simplified reservation', 'About section', 'Responsive & performant']
