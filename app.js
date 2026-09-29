@@ -554,8 +554,8 @@ function startTyping() {
   if (!el) return;
 
   const texts = {
-    fr: 'Ingénieur des Systèmes d\'Information en formation | Développeur Full Stack',
-    en: 'Information Systems Engineering Student | Fullstack Developer'
+    fr: 'Ingénieur des Systèmes d\'Information | Développeur Full Stack',
+    en: 'Information Systems Engineering | Full Stack Developer'
   };
 
   let text = texts[currentLang];
